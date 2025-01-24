@@ -34,7 +34,6 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::resource('layanan', LayananController::class);
 
     Route::post('user', [UserController::class, 'store']);
-    Route::put('user', [UserController::class, 'update']);
     Route::resource('user', UserController::class);
 
     Route::get('deposit', [DepositController::class, 'index'])->name('deposit');

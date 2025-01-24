@@ -194,7 +194,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class
+        Spatie\Permission\PermissionServiceProvider::class,
+        Kyslik\ColumnSortable\ColumnSortableServiceProvider::class
+
 
     ],
 
@@ -211,6 +213,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'ColumnSortable' => Kyslik\ColumnSortable\Facades\ColumnSortable::class
     ])->toArray(),
 
 ];
