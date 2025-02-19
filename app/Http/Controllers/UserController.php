@@ -13,7 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::oldest();
+        $users = User::sortable();
         if (request('keyword')) {
             $users->where('username', 'like', '%' . request('keyword') . '%')
                 ->orWhere('email', 'like', '%'  . request('keyword') . '%')
@@ -65,11 +65,15 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+<<<<<<< HEAD
         // return response()->json([
         //     "message" => "Berhasil Show Data Edit!",
         //     "data" => $user
         // ]);
         return view("admin.user.edit");
+=======
+        return view('admin.user.edit', ['user' => $user]);
+>>>>>>> d6f18e496e2c680a80ace80a7b2409cf043d6105
     }
 
     /**
@@ -77,20 +81,32 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $validatedData = $request->validate([
-            'username' => 'required|max:25|alpha_num|unique:users,username',
-            'email' => 'required|email:dns|unique:users,email',
-            'phone' => 'required|numeric',
-            'saldo' => 'required|numeric',
-            'level' => 'required',
-            'password' => 'required|min:6',
-            'status' => 'required'
-        ]);
-        $validatedData['password'] = Hash::make($validatedData['password']);
+        
+        
+        if($request->password){
+            $validatedData = $request->validate([
+                'email' => 'required|email:dns|unique:users,email,'. $user->id,
+                'phone' => 'required|numeric',
+                'saldo' => 'required|numeric',
+                'level' => 'required',
+                'password' => 'required|min:6',
+                'status' => 'required'
+            ]);
+            $validatedData['password'] = Hash::make($validatedData['password']);
+        } else{
+            $validatedData = $request->validate([
+                'email' => 'required|email:dns|unique:users,email,'. $user->id,
+                'phone' => 'required|numeric',
+                'saldo' => 'required|numeric',
+                'level' => 'required',
+                'status' => 'required'
+            ]);
+        }
+        
+        
 
-        User::where('id', $user->id);
-
-        return back()->with('success', 'New User has been added!');
+        $user->update($validatedData);
+        return redirect('user')->with('success', 'User has been edited!');
     }
 
     /**
