@@ -33,6 +33,7 @@ class DigiflazzController extends Controller
                     $layananExist = Layanan::where('kode_produk', $data['buyer_sku_code'])->first();
                     $params = [
                         "produk_id" => $produk['id'],
+                        "kategori_id" => random_int(1,2),
                         "provider" =>  "digiflazz",
                         "layanan" => $data['product_name'],
                         "kode_produk" => $data['buyer_sku_code'],

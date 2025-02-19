@@ -41,6 +41,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 
     Route::get('pay-method/getMethod', [PayMethodController::class, 'getMethod'])->name('pay-method.getMethod');
     Route::resource('pay-method', PayMethodController::class);
+
 });
 
 Route::middleware('auth')->group(function () {

@@ -126,8 +126,8 @@
                     </td>
                     <td class="px-6 py-4">
                         <!-- Modal toggle -->
-                        <a href="" id="detailUserButton" type="button" data-modal-target="detailUserModal" data-id="{{ $user->id }}" class="detailUser text-base text-slate-400"><i class="fa-solid fa-circle-info mx-2"></i></a>
-                        <a href="" type="button"  data-modal-target="userModal" data-id="{{ $user->id }}" class="editUser text-base text-blue-400"><i class="fa-regular fa-pen-to-square"></i></a>
+                        <a href="" id="detailUserButton" type="button" data-modal-target="userModal" data-modal-show="userModal" data-id="{{ $user->id }}" class="detailUser text-base text-slate-400"><i class="fa-solid fa-circle-info mx-2"></i></a>
+                        <a href="user/{{ $user->id }}/edit" type="button"  data-modal-target="userModal" class="editUser text-base text-blue-400"><i class="fa-regular fa-pen-to-square"></i></a>
                         <form action="/user/{{ $user->id }}" method="post" class="inline mx-2">
                             @csrf 
                             @method('delete')
@@ -139,7 +139,7 @@
                 </tr>
                 @endforeach
             </tbody>
-        </table>
+        </table> 
 
         {{ $users->links() }}
 
@@ -151,7 +151,7 @@
 
 
         <!-- Detail user modal -->
-        <div id="detailUserModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 items-center justify-center hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        {{-- <div id="detailUserModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 items-center justify-center hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative w-full max-w-2xl max-h-full">
                 <!-- Modal content -->
                 <section class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -206,13 +206,13 @@
                     </div>
                 </section>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Create/Update user modal -->
         <div id="userModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 items-center justify-center hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative w-full max-w-2xl max-h-full">
                 <!-- Modal content -->
-                <form class="relative bg-white rounded-lg shadow dark:bg-gray-700" method="POST">
+                <form class="relative bg-white rounded-lg shadow dark:bg-gray-700" method="POST" id="form-submit">
                     @csrf
                     <!-- Modal header -->
                     <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">

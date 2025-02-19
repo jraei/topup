@@ -65,10 +65,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return response()->json([
-            "message" => "Berhasil Show Data Edit!",
-            "data" => $user
-        ]);
+        // return response()->json([
+        //     "message" => "Berhasil Show Data Edit!",
+        //     "data" => $user
+        // ]);
+        return view("admin.user.edit");
     }
 
     /**

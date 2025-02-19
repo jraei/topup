@@ -51,6 +51,11 @@
                         {{ __('Deposit') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-2 sm:-my-px sm:ms-10 sm:flex">  
+                    <x-nav-link href="/pesanan" :active="request()->routeIs('pesanan*')">
+                        {{ __('Pesanan') }}
+                    </x-nav-link>
+                </div>
                 
             </div>
 
